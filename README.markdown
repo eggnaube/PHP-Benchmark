@@ -49,8 +49,6 @@ To use this class, construct an instance of the class `PHP_Benchmark` and you ca
 
 * More options in the functions
 
-=======
-
 ## User Interface (UI)
 This is the visible part of the PHP Benchmark Script. With it you can easily use the PHP Benchmark class knowing whatsoever about programming PHP.
 
@@ -81,7 +79,6 @@ To use this class, construct an instance of the class `PHP_Benchmark` and you ca
 
 * More options in the functions
 
->>>>>>> 29f6e218552248a21c6ebfa6daf285e94f1a1505
 ## Function Benchmark class
 This class is (until now) empty, but there will be some functions soon.
 
