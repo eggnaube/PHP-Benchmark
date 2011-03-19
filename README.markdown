@@ -5,7 +5,6 @@ The PHP Benchmark Script consists of the following three parts:
 * User Interface (for normal users): This is what you will see if you access the index.php file.
 * PHP Benchmark class (for PHP developers): This is the class the UI is based on and with it you can benchmark your PHP webserver with the 7 tests you saw in the UI.
 * Function Benchmark class (for advanced PHP developers): This will be (not ready yet) a class to compare one or more functions in the matter of performance.
-<<<<<<< HEAD
 
 It can measure the following things:
 
