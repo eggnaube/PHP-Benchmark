@@ -71,8 +71,8 @@ Click on 'Clear table' to remove the results from the table.
 This is the core of the PHP Benchmark Script. It contains the tests and some functions to do them. 
 To use this class, construct an instance of the class `PHP_Benchmark` and you can use the following functions:
 
-* doTests() -> do all 7 tests and return their results in an array.
-* test1(), test2(), test3() and so on -> execute the tests separately. They will return the time needed as a float.
+* `doTests()` -> do all 7 tests and return their results in an array.
+* `test1()`, `test2()`, `test3()` and so on -> execute the tests separately. They will return the time needed as a float.
 
 ### Coming features
 
