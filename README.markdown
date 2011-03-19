@@ -79,7 +79,7 @@ To use this class, construct an instance of the class `PHP_Benchmark` and you ca
 * More options in the functions
 
 ## Function Benchmark class
-This class is (until now) empty, but there will be some functions soon.
+There is no documentation yet, so please look at the very well documented code ;).
 
 ## License
 All parts of this are until now licensed under the GPL.
