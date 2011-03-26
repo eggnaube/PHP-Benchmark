@@ -26,9 +26,10 @@ Click on 'Clear table' to remove the results from the table.
 
 ## PHP Benchmark class
 This is the core of the PHP Benchmark Script. It contains the tests and some functions to do them. 
-To use this class, construct an instance of the class `PHP_Benchmark` and you can use the following functions:
 
-* `doTests()` -> do all 7 tests and return their results in an array.
+To use this class, create an instance of the `PHP_Benchmark` class and you can use the following methods:
+
+* `doTests()`: do all 7 tests and return their results in an array.
 * `test1()`: String operations test
 * `test2()`: Encryption and hashes test
 * `test3()`: Date functions and calculations test
@@ -36,6 +37,7 @@ To use this class, construct an instance of the class `PHP_Benchmark` and you ca
 * `test5()`: Array functions test
 * `test6()`: Filesystem operations test
 * `test7()`: Object handling test
+
 All the tests (except `doTests()`) will return a float that is the time the test needed.
 
 ### Coming features
