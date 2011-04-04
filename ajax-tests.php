@@ -12,12 +12,12 @@
 	
 	$benchmark = new PHP_Benchmark;
 	$results = $benchmark->doTests(true);
+
+	foreach ($results as $key => $value) {
+		$json[($key - 1)] = round($value);
+	}
+
+	$json = json_encode($json);
+	
+	echo $json;
 ?>
-	<th scope="row"><?php if (isset($_POST['num'])) { echo(htmlspecialchars($_POST['num'])); } ?></th>
-	<td><?php echo(round($results[1])); ?> ms</td>
-	<td><?php echo(round($results[2])); ?> ms</td>
-	<td><?php echo(round($results[3])); ?> ms</td>
-	<td><?php echo(round($results[4])); ?> ms</td>
-	<td><?php echo(round($results[5])); ?> ms</td>
-	<td><?php echo(round($results[6])); ?> ms</td>
-	<td><?php echo(round($results[7])); ?> ms</td>

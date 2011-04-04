@@ -3,44 +3,113 @@
 
 $(document).ready(function(){
 	
+	/* Set up the important variables
+	--------------------------------------------- */
+
 	var counttests = 0;
 	
+	var results = new Array();
+	/* Divide the results array in two different sorted versions:
+	 * The first is sorted by the test type, like test1, test2 and so on. 
+	 * The second one is sorted by test type, a bit like the table rows are shown.
+	 */ 
+	results["byTestType"] = new Array(); 
+	results["byRequest"] =  new Array();
+	
+	
+	
+	/* doTests(): Main function to do the tests
+	--------------------------------------------- */
 	
 	function doTests(numtests) {
 		
 		/* Change status message */
 		$("#status").html("Loading...");
 		
+		/* add one to the test counter variable */
 		counttests++;
-		$("#results-content").append("<tr></tr>");
-		$('#results-content tr:last').load('./ajax-tests.php',{ num: counttests }, function(response, status, xhr) {
-  			
-  			/*
-  			 * alert status message
-  			 * 
-  			 * TODO: display error in another, not so blocking way.
-  			 */
-  			if (status == "error") {
-    			alert("Test error: " + xhr.status + " " + xhr.statusText);
-    		}
-    		
-    		/* Change status message again */
-    		$("#status").html("Finished!");	
-    		
-    		numtests--;
-    		
-    		/* if there are still tests to do start the function again */
-    		if (numtests > 0) {
-    			doTests(numtests);
-    		}
-
-    	});
+		
+		
+		/* --- AJAX Request --- */
+		
+		$.ajax({
+			url: './ajax-tests.php',
+			dataType: 'json',
+			success: function(data, textStatus, jqXHR){
+			  
+				
+				/* Parse result to html table markup */
+					
+					$("#results-content").append("<tr></tr>");
+					
+					var html = '<tr><th>' + counttests + '</th>';
+					
+					var total = 0;
+					
+					$.each(data, function(index, value){
+						html = html + '<td>' + value + '</td>';
+						total = total + value;
+					});
+	
+					html = html + '<th>' + total + '</th>';
+					
+					html = html + '</tr>';
+				
+				/* END: Parse result to html table markup */
+				
+				
+				/* add the parsed html to the table */
+				$(html)
+				    .hide()
+				    .appendTo('#results-content')
+				    .css({
+				    	'opacity':'0',
+				    	'display':'table-row'
+				    	})
+				    .animate({'opacity':'1'}, 'slow');
+			  
+				/* Change status message again */
+				$("#status").html("Finished!");
+				
+				
+				/* Fill in the results["byTestType"] array */
+				$.each(data, function(index, value){
+					
+					if (typeof(results["byTestType"][index]) == "undefined") {
+						results["byTestType"][index] = new Array();
+					}
+					
+					results["byTestType"][index][counttests] = value;
+					
+				});
+				
+				/* Fill in the results["byRequest"] array */
+				results["byRequest"][counttests] = data;
+				
+				numtests--;
+				  
+				/* if there are still tests to do start the function again */
+				if (numtests > 0) {
+					doTests(numtests);
+				}
+				
+				averages();
+			  
+		    }, /* SUCCESS callback END */
+		    
+		    error: function(jqXHR, textStatus, errorThrown){
+		    	alert('Request error: ' + textStatus);
+		    }
+		    
+		});
     	
 	}
 	
-	
-	
-	
+	/* TODO: AVERAGES */
+	function averages() {
+		return '';
+	}
+
 	
 	/* STARTBUTTON */
 	$("#startbutton").click(function(event){
@@ -79,3 +148,4 @@ $(document).ready(function(){
 	$('#sourcecode').tabs();
 	
 });
+

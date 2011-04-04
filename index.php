@@ -15,10 +15,13 @@
 <!--[if (gte IE 9)|!(IE)]><!-->
 <html class="no-js" lang="en">
 	<!--<![endif]-->
-	<head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-		<title>PHP Benchmark Script</title>
-		<meta name="description" content=""><meta name="author" content="Philipp Schroer">
+		<title>PHP Benchmark</title>
+		<meta name="description" content="Test how fast your webserver really is!">
+		<meta name="author" content="Philipp Schroer">
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -36,11 +39,8 @@
 		<div id="container">
 
 			<header>
-				<h1>PHP Benchmark Script</h1>
-				<h2>
-				test how fast your webserver
-				<span style="font-style:italic;">really</span> is!
-				</h2>
+				<h1>PHP Benchmark</h1>
+				<h2>test how fast your webserver <span style="font-style:italic;">really</span> is!</h2>
 			</header>
 			
 			<div id="main" role="main">
@@ -64,6 +64,8 @@
 		                        <th scope="col">Arrays</th>
 		                        <th scope="col">Filesystem</th>
 		                        <th scope="col">Objects</th>
+								<th scope="col">Total</th>
+
 		                    </tr>
 		                </thead>
 		                <tfoot>
