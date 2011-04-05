@@ -1,20 +1,23 @@
 /* Author: Philipp Schroer */
 
 
-$(document).ready(function(){
+$(document).ready(function(){	
+	
 	
 	/* Set up the important variables
 	--------------------------------------------- */
 
 	var counttests = 0;
 	
-	var results = new Array();
 	/* Divide the results array in two different sorted versions:
 	 * The first is sorted by the test type, like test1, test2 and so on. 
 	 * The second one is sorted by test type, a bit like the table rows are shown.
 	 */ 
-	results["byTestType"] = new Array(); 
-	results["byRequest"] =  new Array();
+    var resultsByTestType = new Array(); 
+	var resultsByRequest =  new Array();
+
+	// saves totals of the requests
+	var totals = new Array();
 	
 	
 	
@@ -33,7 +36,7 @@ $(document).ready(function(){
 		/* --- AJAX Request --- */
 		
 		$.ajax({
-			url: './ajax-tests.php',
+			url: 'ajax-tests.php',
 			dataType: 'json',
 			success: function(data, textStatus, jqXHR){
 			  
@@ -50,6 +53,9 @@ $(document).ready(function(){
 						html = html + '<td>' + value + '</td>';
 						total = total + value;
 					});
+					
+					// save total in totals array & begin at 0
+					totals[(counttests -1)] = total;
 	
 					html = html + '<th>' + total + '</th>';
 					
@@ -72,54 +78,84 @@ $(document).ready(function(){
 				$("#status").html("Finished!");
 				
 				
-				/* Fill in the results["byTestType"] array */
+				/* Fill in the resultsByTestType array */
 				$.each(data, function(index, value){
 					
-					if (typeof(results["byTestType"][index]) == "undefined") {
-						results["byTestType"][index] = new Array();
+					if (typeof(resultsByTestType[index]) == "undefined") {
+						resultsByTestType[index] = new Array();
 					}
 					
-					results["byTestType"][index][counttests] = value;
+					resultsByTestType[index][(counttests -1)] = value; // start array at 0
 					
 				});
 				
-				/* Fill in the results["byRequest"] array */
-				results["byRequest"][counttests] = data;
+				/* Fill in the resultsByRequest array */
+				resultsByRequest[counttests] = data;
 				
 				numtests--;
 				  
+				averages();
+				 
 				/* if there are still tests to do start the function again */
 				if (numtests > 0) {
 					doTests(numtests);
 				}
-				
-				averages();
 			  
 		    }, /* SUCCESS callback END */
 		    
 		    error: function(jqXHR, textStatus, errorThrown){
-		    	alert('Request error: ' + textStatus);
+//		    	alert('Request error: ' + textStatus);
 		    }
 		    
 		});
     	
 	}
 	
-	/* TODO: AVERAGES */
+	/* Average computing
+	--------------------------------------------- */
 	function averages() {
-		return '';
+		
+		var html = '<th scope="row">Average</th>';
+		
+		for (var testType = 0; testType < resultsByTestType.length; testType++) {
+
+			var execNum = 0;
+			var sum = 0;
+			while(execNum < resultsByTestType[testType].length) {
+				sum = sum + resultsByTestType[testType][execNum];
+				execNum++;
+			}
+			
+			var average = Math.round(sum / execNum);
+			
+			html = html + '<td>' + average + '</td>';
+		
+		}
+		
+		// average of all totals
+		var TotalsSum = 0;
+		$.each(totals, function(index, value){
+			TotalsSum = TotalsSum + value;
+		});
+
+		html = html + '<td>' + Math.round(TotalsSum / counttests) + '</td>';
+		$("#averages").children().remove();
+		$("#averages").append(html);
+		
 	}
 
 	
-	/* STARTBUTTON */
+	/* Startbutton
+	--------------------------------------------- */
 	$("#startbutton").click(function(event){
 		event.preventDefault();
-		doTests(5);
+		doTests(10);
 	});
-	/* STARTBUTTON END */
 	
 	
-	/* CLEARBUTTON */
+	
+	/* Clearbutton
+	--------------------------------------------- */
 	$("#clearbutton").click(function(event){
 		event.preventDefault();
 		
@@ -141,10 +177,11 @@ $(document).ready(function(){
 			$('#controls p:first').show('slow');
 		});
 	});
-	/* CLEARBUTTON END */
+
 	
 	
-	/* SOURCECODE TABS */
+	/* Sourcecode tabs
+	--------------------------------------------- */
 	$('#sourcecode').tabs();
 	
 });

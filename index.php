@@ -69,16 +69,9 @@
 		                    </tr>
 		                </thead>
 		                <tfoot>
-<!--		                <tr>               TODO: Add average at the bottom of the table
-		                        <th scope="row">Average</th>
-		                        <td>110ms</td>
-		                        <td>110ms</td>
-		                        <td>110ms</td>
-		                        <td>110ms</td>
-		                        <td>110ms</td>
-		                        <td>110ms</td>
-		                        <td>110ms</td>
-		                	</tr> -->
+							<tr id="averages"> 
+								<th scope="row">Average</th>
+							</tr>
 		                </tfoot>
 		                <tbody id="results-content">
 		                    
