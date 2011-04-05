@@ -7,7 +7,7 @@ The PHP Benchmark Script consists of the following three parts:
 * `Function_Benchmark` class (for more advanced PHP developers): This is a class to compare one or more functions in the matter of performance.
 
 ## User Interface (UI)
-This is the visible part of the PHP Benchmark Script. With it you can easily use the PHP Benchmark class knowing whatsoever about programming PHP.
+This is the visible part of the PHP Benchmark Script. With it you can easily use the PHP Benchmark class knowing whatsoever about programming.
 
 ### Usage
 To use the UI, simply copy all files to your server and access the index of your PHP Benchmark Script directory.
@@ -25,11 +25,11 @@ Click on 'Clear table' to remove the results from the table.
 * [Known issues](https://github.com/Philipp15b/PHP-Benchmark/issues/labels/UI "Known issues")
 
 ## PHP Benchmark class
-This is the core of the PHP Benchmark Script. It contains the tests and some functions to do them. 
+This is the core of the PHP Benchmark Script. It contains the tests and the logic to run them.
 
 To use this class, create an instance of the `PHP_Benchmark` class and you can use the following methods:
 
-* `doTests()`: do all 7 tests and return their results in an array.
+* `doTests()`: Does all 7 tests and returns their results in a (numeric) array.
 * `test1()`: String operations test
 * `test2()`: Encryption and hashes test
 * `test3()`: Date functions and calculations test
