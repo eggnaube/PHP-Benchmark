@@ -19,12 +19,15 @@ $(document).ready(function(){
 	// saves totals of the requests
 	var totals = new Array();
 	
+	var stop = false;
 	
 	
 	/* doTests(): Main function to do the tests
 	--------------------------------------------- */
 	
 	function doTests(numtests) {
+		
+		stop = false;
 		
 		/* Change status message */
 		$("#status").html("Loading...");
@@ -97,7 +100,7 @@ $(document).ready(function(){
 				averages();
 				 
 				/* if there are still tests to do start the function again */
-				if (numtests > 0) {
+				if (stop == false && numtests > 0) {
 					doTests(numtests);
 				}
 			  
@@ -152,6 +155,13 @@ $(document).ready(function(){
 		doTests(10);
 	});
 	
+	/* Stopbutton
+	--------------------------------------------- */
+	$("#stopbutton").click(function(event){
+		event.preventDefault();
+		stop = true;
+	});
+	
 	
 	
 	/* Clearbutton
@@ -166,9 +176,13 @@ $(document).ready(function(){
 		$('#delete-yes').click(function(event) {
 			event.preventDefault();
 			$("#results-content").children().hide('slow');
+			$("#averages").children().hide('slow').remove();
 			$('#suredelete').remove();
 			$('#controls p:first').show('slow');
 			counttests = 0;
+			resultsByTestType = new Array(); 
+			resultsByRequest =  new Array();
+			totals = new Array();		
 		});
 		
 		$('#delete-no').click(function(event) {

@@ -47,7 +47,7 @@
 				
 				<section id="controls">
 						<p id="control-buttons">
-							<a href="#" class="primary button left big" id="startbutton"><span class="icon rightarrow"></span>Start</a><a href="#" class="button right negative cross big" id="clearbutton"><span class="cross icon"></span>Clear table</a>
+							<a href="#" class="primary button left big" id="startbutton"><span class="icon rightarrow"></span>Start</a><a href="#" class="middle big negative button" id="stopbutton">Stop</a><a href="#" class="button right negative cross big" id="clearbutton"><span class="cross icon"></span>Clear table</a>
 						</li>
 						<p id="status">Start the tests by clicking on the start button</li>
 				</section>
@@ -70,7 +70,6 @@
 		                </thead>
 		                <tfoot>
 							<tr id="averages"> 
-								<th scope="row">Average</th>
 							</tr>
 		                </tfoot>
 		                <tbody id="results-content">
