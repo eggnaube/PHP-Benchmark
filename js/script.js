@@ -3,7 +3,6 @@
 
 $(document).ready(function(){	
 	
-	
 	/* Set up the important variables
 	--------------------------------------------- */
 
@@ -21,6 +20,10 @@ $(document).ready(function(){
 	
 	var stop = false;
 	
+	/* --- Default settings --- */
+	var settings = new Array();
+	settings['TestsOnStart'] = 5;
+	
 	
 	/* doTests(): Main function to do the tests
 	--------------------------------------------- */
@@ -29,8 +32,10 @@ $(document).ready(function(){
 		
 		stop = false;
 		
-		/* Change status message */
-		$("#status").html("Loading...");
+		/* Change status message & progressbar */
+		$("#status").html('Doing ' + settings['TestsOnStart'] + ' tests, ' + numtests + ' remaining.');
+		var progress = (100 - (Math.round(numtests / (settings['TestsOnStart'] / 100))));
+		$( "#progressbar" ).progressbar('value', progress);
 		
 		/* add one to the test counter variable */
 		counttests++;
@@ -41,6 +46,8 @@ $(document).ready(function(){
 		$.ajax({
 			url: 'ajax-tests.php',
 			dataType: 'json',
+			cache:false,
+			timeout:15000,
 			success: function(data, textStatus, jqXHR){
 			  
 				
@@ -58,7 +65,7 @@ $(document).ready(function(){
 					});
 					
 					// save total in totals array & begin at 0
-					totals[(counttests -1)] = total;
+					totals[(counttests - 1)] = total;
 	
 					html = html + '<th>' + total + '</th>';
 					
@@ -75,11 +82,7 @@ $(document).ready(function(){
 				    	'opacity':'0',
 				    	'display':'table-row'
 				    	})
-				    .animate({'opacity':'1'}, 'slow');
-			  
-				/* Change status message again */
-				$("#status").html("Finished!");
-				
+				    .animate({'opacity':'1'}, 'slow');		
 				
 				/* Fill in the resultsByTestType array */
 				$.each(data, function(index, value){
@@ -96,12 +99,15 @@ $(document).ready(function(){
 				resultsByRequest[counttests] = data;
 				
 				numtests--;
-				  
-				averages();
+				
+				computeAverages();
 				 
 				/* if there are still tests to do start the function again */
 				if (stop == false && numtests > 0) {
 					doTests(numtests);
+				} else {
+					$( "#progressbar" ).progressbar('value', 100);
+					$('#status').html('Finished!');
 				}
 			  
 		    }, /* SUCCESS callback END */
@@ -116,7 +122,7 @@ $(document).ready(function(){
 	
 	/* Average computing
 	--------------------------------------------- */
-	function averages() {
+	function computeAverages() {
 		
 		var html = '<th scope="row">Average</th>';
 		
@@ -150,53 +156,91 @@ $(document).ready(function(){
 	
 	/* Startbutton
 	--------------------------------------------- */
-	$("#startbutton").click(function(event){
+	$("#button-start").click(function(event){
 		event.preventDefault();
-		doTests(10);
+		$('#progressbar').show('slow');
+		doTests(settings['TestsOnStart']);
 	});
 	
 	/* Stopbutton
 	--------------------------------------------- */
-	$("#stopbutton").click(function(event){
+	$("#button-stop").click(function(event){
 		event.preventDefault();
 		stop = true;
 	});
 	
 	
 	
-	/* Clearbutton
+	/* Clearbutton(s)
 	--------------------------------------------- */
-	$("#clearbutton").click(function(event){
+	$("#button-clear").click(function(event){
 		event.preventDefault();
 		
 		/* on click hide the normal buttons and show a confirmation button */
-		$('#control-buttons').hide();
-		$('#controls').prepend('<p id="suredelete"><a href="#" class="button big negative left" id="delete-yes"><span class="cross icon" style="width:100px;"></span>Do it!</a><a href="#" class="primary button big right" style="width:200px;" id="delete-no">No!</a></p>');	
+		$('#controls-run, #controls-etc').hide('slow');
+		$('#controls-clear-verify').show('slow');
+
+		$('#status').html('Do you really want to delete the results?');
+	});
+	
+	$('#controls-clear-verify-yes').click(function(event) {
+		event.preventDefault();
+			
+		/* reset variables */
+		counttests = 0;
+		resultsByTestType = new Array(); 
+		resultsByRequest =  new Array();
+		totals = new Array();
+			
+		$("#results-content").children().hide('slow').remove();
+		$("#averages").children().hide('slow').remove();		
+		$('#status').html('');
+		$('#controls-clear-verify').hide('slow');
+		$('#controls-run, #controls-etc').show('slow');
+			
+	});
 		
-		$('#delete-yes').click(function(event) {
-			event.preventDefault();
-			$("#results-content").children().hide('slow');
-			$("#averages").children().hide('slow').remove();
-			$('#suredelete').remove();
-			$('#controls p:first').show('slow');
-			counttests = 0;
-			resultsByTestType = new Array(); 
-			resultsByRequest =  new Array();
-			totals = new Array();		
-		});
-		
-		$('#delete-no').click(function(event) {
-			event.preventDefault();
-			$('#suredelete').remove();
-			$('#controls p:first').show('slow');
-		});
+	$('#controls-clear-verify-no').click(function(event) {
+		event.preventDefault();
+		$('#status').html('');
+		$('#controls-clear-verify').hide('slow');
+		$('#controls-run, #controls-etc').show('slow');
 	});
 
+	
+	/* Settings
+	--------------------------------------------- */
+	$('#settings').dialog({
+		autoOpen: false,
+		modal:true,
+		minWidth: 400,
+		open:function(event,ui){
+			 $('#settings-TestsOnStart').val(settings['TestsOnStart']);
+		},
+		show: 'blind',
+		buttons: {
+			'Save':function(){
+				settings['TestsOnStart'] = $('#settings-TestsOnStart').val();
+				$( this ).dialog( "close" );
+			}
+		},
+		hide: 'blind'
+	});
+	
+	$('#button-settings').click(function(event){
+		event.preventDefault();
+		$('#settings').dialog('open');
+	});
 	
 	
 	/* Sourcecode tabs
 	--------------------------------------------- */
 	$('#sourcecode').tabs();
 	
+	/* Progressbar
+	--------------------------------------------- */
+	$( "#progressbar" ).progressbar({
+			value: 0
+		});
 });
 

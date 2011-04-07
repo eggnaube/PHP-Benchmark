@@ -1,13 +1,3 @@
-<?php
-	/* Serverinfo */
-	$serverinfo = array();
-	$serverinfo["OS"] = php_uname("s"); // Operating system
-	$serverinfo["Hostname"] = php_uname("n"); // Hostname
-	$serverinfo["Zend"] = zend_version(); // Zend version
-	$serverinfo["PHP"]["Version"] = phpversion(); // PHP version
-	$serverinfo["PHP"]["API"] = php_sapi_name(); // PHP API type
-			
-?>
 <!doctype html>
 <!--[if lt IE 7 ]> <html class="no-js ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]>    <html class="no-js ie7" lang="en"> <![endif]-->
@@ -28,11 +18,11 @@
 		<link type="text/css" rel="stylesheet" href="css/syntaxhighlighter/shCore.css"/>
 		<link type="text/css" rel="stylesheet" href="css/syntaxhighlighter/shCoreDefault.css"/>
 		<link rel="stylesheet" href="css/css3buttons.css" media="screen">
-		<link type="text/css" href="css/south-street/jquery-ui-1.8.10.custom.css" rel="stylesheet" />
+		<link type="text/css" href="css/south-street/jquery-ui-1.8.11.custom.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/style.css?v=2">
 
-		<script src="js/libs/modernizr-1.7.min.js">
-		</script>
+		<script src="js/libs/modernizr-1.7.min.js"></script>
+		
 	</head>
 	<body>
 
@@ -46,14 +36,21 @@
 			<div id="main" role="main">
 				
 				<section id="controls">
-						<p id="control-buttons">
-							<a href="#" class="primary button left big" id="startbutton"><span class="icon rightarrow"></span>Start</a><a href="#" class="middle big negative button" id="stopbutton">Stop</a><a href="#" class="button right negative cross big" id="clearbutton"><span class="cross icon"></span>Clear table</a>
-						</li>
-						<p id="status">Start the tests by clicking on the start button</li>
+						<p id="controls-run">
+							<a href="#" class="primary button left big" id="button-start"><span class="icon rightarrow"></span>Start</a><a href="#" class="right big negative button" id="button-stop">Stop</a>
+						</p>
+						<p id="controls-etc">	
+							<a href="#" class="button left negative cross big" id="button-clear"><span class="cross icon"></span>Clear table</a><a class="big right button" id="button-settings" href="#"><span class="cog icon"></span>Settings</a>
+						</p>
+						<p id="controls-clear-verify" style="display:none;">
+							<a href="#" class="button big negative left" id="controls-clear-verify-yes"><span class="cross icon"></span>Yes</a><a href="#" class="primary button big right" id="controls-clear-verify-no">No</a>
+						</p>
+						<p id="status">Start the tests by clicking on the start button</p>
+						<div id="progressbar" style="width:60%; text-align:center; margin-left:auto; margin-right:auto; display:none;"></div>
 				</section>
 				
 				<section>
-					<table class="results">
+					<table id="results">
 		                <thead>
 		                    <tr>
 		                        <th></th>
@@ -65,11 +62,19 @@
 		                        <th scope="col">Filesystem</th>
 		                        <th scope="col">Objects</th>
 								<th scope="col">Total</th>
-
 		                    </tr>
 		                </thead>
 		                <tfoot>
 							<tr id="averages"> 
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
 							</tr>
 		                </tfoot>
 		                <tbody id="results-content">
@@ -81,11 +86,11 @@
 				<section id="serverinfo">
 					<h2>Server information</h2>
 					<ul>
-						<li><span style="font-weight:bold;">Hostname</span>: <?php echo $serverinfo["Hostname"]; ?></li>
-						<li><span style="font-weight:bold;">Operating system</span>: <?php echo $serverinfo["OS"]; ?></li>
-						<li><span style="font-weight:bold;">PHP version</span>: <?php echo $serverinfo["PHP"]["Version"]; ?></li>
-						<li><span style="font-weight:bold;">PHP API type</span>: <?php echo $serverinfo["PHP"]["API"]; ?></li>
-						<li><span style="font-weight:bold;">Zend version</span>: <?php echo $serverinfo["Zend"]; ?></li>
+						<li><span style="font-weight:bold;">Hostname</span>: <?php echo php_uname('n'); ?></li>
+						<li><span style="font-weight:bold;">Operating system</span>: <?php echo php_uname('s'); ?></li>
+						<li><span style="font-weight:bold;">PHP version</span>: <?php echo phpversion(); ?></li>
+						<li><span style="font-weight:bold;">PHP API type</span>: <?php echo php_sapi_name(); ?></li>
+						<li><span style="font-weight:bold;">Zend version</span>: <?php echo zend_version(); ?></li>
 					</ul>
 				</section>
 				
@@ -217,8 +222,24 @@ for($i=0; $i < 20000; $i++) {
 			</div>
 			
 			<footer>
+				<p>
+					<a xmlns:xh="http://www.w3.org/1999/xhtml/vocab#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rel="xh:license xh:license license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+						<img alt="Creative Commons License" src="https://d3nwyuy0nl342s.cloudfront.net/img/9df00526e958635bcd1988a037413bdce001b493/687474703a2f2f692e6372656174697665636f6d6d6f6e732e6f72672f6c2f62792d73612f332e302f38387833312e706e67">
+					</a>
+				</p>
+				<p>
+					<a href="https://github.com/Philipp15b/PHP-Benchmark">PHP Benchmark</a> by Philipp Schroer is licensed under a <a xmlns:xh="http://www.w3.org/1999/xhtml/vocab#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rel="xh:license xh:license license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+				</p>
 			</footer>
 		
+		</div>
+		
+		<div id="settings" title="Settings">
+			<form action="javascript:void();">
+				<ul>
+					<li>Do <input id="settings-TestsOnStart" name="TestsOnStart" type="text" size="2" maxlength="4" value="5"> tests after clicking on the start button.</li>
+				</ul>
+			</form>
 		</div>
 		
 		
@@ -231,7 +252,7 @@ for($i=0; $i < 20000; $i++) {
 		<script type="text/javascript">SyntaxHighlighter.all();</script>
 		<!-- SyntaxHighlighter END -->
 		
-		<script type="text/javascript" src="js/mylibs/jquery-ui-1.8.10.custom.min.js"></script>
+		<script type="text/javascript" src="js/mylibs/jquery-ui-1.8.11.custom.min.js"></script>
 		<script src="js/plugins.js"></script>
 		<script src="js/script.js"></script>
 

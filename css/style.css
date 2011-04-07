@@ -168,16 +168,33 @@ a:hover { color: #036; }
  * Author: Philipp Schroer
  */
 
-/* Container */
+
+ /* General
+--------------------------------------------- */
+
 #container {
 	width:960px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top:20px;
 	margin-bottom:20px;
+	text-align: center;
 }
 
-/* Header */
+section  {
+	margin-top:30px;
+	margin-bottom:20px;	
+	margin-left:auto;
+	margin-right:auto;
+}
+
+h2 {
+	font-size:26px;
+}
+
+/* Header
+--------------------------------------------- */
+
 header {
 	text-align: center;
 }
@@ -190,14 +207,12 @@ header h2 {
 	font-size: 35px;
 }
 
-section  {
-	margin-top:30px;
-	margin-bottom:20px;	
-	margin-left:auto;
-	margin-right:auto;
-	text-align: center;
-}
+/* Controls
+--------------------------------------------- */
 
+#controls p {
+	margin-top:1em;
+}
 
 #controls #status {
 	margin-top:10px;
@@ -205,8 +220,12 @@ section  {
 	
 }
 
-/* Results table */
-table.results{
+.ui-progressbar-value { background-image: url(pbar-ani.gif); }
+
+/* Results table
+--------------------------------------------- */
+
+#results{
     font-family: "Trebuchet MS", sans-serif;
     font-size: 16px;
     font-weight: bold;
@@ -216,7 +235,10 @@ table.results{
     margin-left: auto;
     margin-right: auto;
 }
-.results thead th{
+
+/* --- Table head --- */
+
+#results thead th{
     padding:15px;
     color:#fff;
     text-shadow:1px 1px 1px #568F23;
@@ -230,24 +252,28 @@ table.results{
         color-stop(0.02, rgb(123,192,67)),
         color-stop(0.51, rgb(139,198,66)),
         color-stop(0.87, rgb(158,217,41))
-        );
+    );
     background: -moz-linear-gradient(
         center bottom,
         rgb(123,192,67) 2%,
         rgb(139,198,66) 51%,
         rgb(158,217,41) 87%
-        );
+    );
     -webkit-border-top-left-radius:5px;
     -webkit-border-top-right-radius:5px;
     -moz-border-radius:5px 5px 0px 0px;
     border-top-left-radius:5px;
     border-top-right-radius:5px;
 }
-.results thead th:empty{
+
+#results thead th:empty{
     background:transparent;
     border:none;
 }
-.results tbody th{
+
+/* --- Table body --- */
+
+#results tbody th{
     color:#fff;
     text-shadow:1px 1px 1px #568F23;
     background-color:#9DD929;
@@ -275,34 +301,36 @@ table.results{
     border-bottom-left-radius:5px;
     vertical-align: middle;
 }
-.results tfoot td{
+
+#results tbody td{
+    padding:10px;
+    text-align:center;
+    background-color:#DEF3CA;
+    border: 2px solid #E7EFE0;
+    color:#666;
+    text-shadow:1px 1px 1px #fff;
+}
+
+/* --- Table footer --- */
+
+#results tfoot td{
     color: #9CD009;
     font-size:23px;
     text-align:center;
     padding:10px 0px;
     text-shadow:1px 1px 1px #444;
 }
-.results tfoot th{
+
+#results tfoot th{
     color:#666;
 }
-.results tbody td{
-    padding:10px;
-    text-align:center;
-    background-color:#DEF3CA;
-    border: 2px solid #E7EFE0;
-    -moz-border-radius:2px;
-    -webkit-border-radius:2px;
-    border-radius:2px;
-    color:#666;
-    text-shadow:1px 1px 1px #fff;
-}
+
+
+/* Serverinfo
+--------------------------------------------- */
 
 #serverinfo {
 	font-size:120%;
-}
-
-h2 {
-	font-size:26px;
 }
 
 #serverinfo ul {
@@ -312,6 +340,9 @@ h2 {
 #serverinfo ul li {
 	margin-left:-7px;
 }
+
+/* Sourcecode
+--------------------------------------------- */
 
 #sourcecode {
 	width:80%;
@@ -323,8 +354,13 @@ h2 {
 	text-align: left;
 }
 
+/* Footer
+--------------------------------------------- */
 
-
+footer {
+	margin-top:4em;
+	margin-bottom:2em;
+}
 
 
 
@@ -358,36 +394,26 @@ h2 {
 
 
 
-/**
+/*
  * Media queries for responsive design.
- *
- * These follow after primary styles so they will successfully override.
  */
 
 @media all and (orientation:portrait) {
-  /* Style adjustments for portrait mode goes here */
 
 }
 
 @media all and (orientation:landscape) {
-  /* Style adjustments for landscape mode goes here */
 
 }
 
-/* Grade-A Mobile Browsers (Opera Mobile, Mobile Safari, Android Chrome)
-   consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ */
+/* Grade-A Mobile Browsers (Opera Mobile, Mobile Safari, Android Chrome) */
 @media screen and (max-device-width: 480px) {
 
-
-  /* Uncomment if you don't want iOS and WinMobile to mobile-optimize the text for you: j.mp/textsizeadjust */
-  /* html { -webkit-text-size-adjust:none; -ms-text-size-adjust:none; } */
 }
 
 
-/**
+/*
  * Print styles.
- *
- * Inlined to avoid required HTTP connection: www.phpied.com/delay-loading-your-print-css/
  */
 @media print {
   * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important;
