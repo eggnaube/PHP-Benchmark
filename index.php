@@ -61,7 +61,7 @@
 		                        <th scope="col">Arrays</th>
 		                        <th scope="col">Filesystem</th>
 		                        <th scope="col">Objects</th>
-								<th scope="col">Total</th>
+								<th scope="col" class="total">Total</th>
 		                    </tr>
 		                </thead>
 		                <tfoot>

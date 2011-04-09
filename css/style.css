@@ -271,6 +271,10 @@ header h2 {
     border:none;
 }
 
+#results thead th.total {
+	border-radius: 5px 5px 5px 0;
+}
+
 /* --- Table body --- */
 
 #results tbody th{
@@ -311,6 +315,23 @@ header h2 {
     text-shadow:1px 1px 1px #fff;
 }
 
+#results td.total {
+	-moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: -moz-linear-gradient(right top , #9ED929 10%, #8BC642 32%, #7BC043 58%) repeat scroll 0 0 transparent;
+    border-color: #93CE37 #93CE37 #93CE37 #9ED929;
+    border-radius: 0px 5px 5px 0px;
+    border-style: solid;
+    border-width: 1px 1px 1px 3px;
+    color: #FFFFFF;
+    padding: 0 10px;
+    text-shadow: 1px 2px 1px #568F23;
+    vertical-align: middle;
+}
+
 /* --- Table footer --- */
 
 #results tfoot td{
@@ -323,6 +344,10 @@ header h2 {
 
 #results tfoot th{
     color:#666;
+}
+
+#results tfoot .totals {
+	font-size:24px;
 }
 
 

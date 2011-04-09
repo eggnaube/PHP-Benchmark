@@ -67,7 +67,7 @@ $(document).ready(function(){
 					// save total in totals array & begin at 0
 					totals[(counttests - 1)] = total;
 	
-					html = html + '<th>' + total + '</th>';
+					html = html + '<td class="total">' + total + '</td>';
 					
 					html = html + '</tr>';
 				
@@ -147,7 +147,8 @@ $(document).ready(function(){
 			TotalsSum = TotalsSum + value;
 		});
 
-		html = html + '<td>' + Math.round(TotalsSum / counttests) + '</td>';
+		html = html + '<td class="totals">' + Math.round(TotalsSum / counttests) + '</td>';
+		
 		$("#averages").children().remove();
 		$("#averages").append(html);
 		
