@@ -17,8 +17,7 @@ Click on 'Clear table' to remove the results from the table.
 
 ### Coming features
 
-* Average times at the bottom of the results table
-* Settings via UI
+* Export of the results
 
 ### More
 
