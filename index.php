@@ -243,8 +243,7 @@ for($i=0; $i < 20000; $i++) {
 		</div>
 		
 		
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
-		<script>window.jQuery || document.write("<script src='js/libs/jquery-1.5.1.min.js'>\x3C/script>")</script>
+		<script src="js/libs/jquery-1.6.1.min.js"></script>
 		
 		<!-- SyntaxHighlighter -->
 		<script type="text/javascript" src="js/mylibs/syntaxhighlighter/shCore.js"></script>
