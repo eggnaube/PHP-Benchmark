@@ -46,7 +46,7 @@
 							<a href="#" class="button big negative left" id="controls-clear-verify-yes"><span class="cross icon"></span>Yes</a><a href="#" class="primary button big right" id="controls-clear-verify-no">No</a>
 						</p>
 						<p id="status">Start the tests by clicking on the start button</p>
-						<div id="progressbar" style="width:60%; text-align:center; margin-left:auto; margin-right:auto; display:none;"></div>
+						<div id="progressbar"></div>
 				</section>
 				
 				<section>

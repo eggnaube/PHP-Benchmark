@@ -28,17 +28,15 @@ $(document).ready(function(){
 	/* doTests(): Main function to do the tests
 	--------------------------------------------- */
 	
-	function doTests(numtests) {
+	function doTests(remainingTests) {
 		
 		stop = false;
 		
 		/* Change status message & progressbar */
-		$("#status").html('Doing ' + settings['TestsOnStart'] + ' tests, ' + numtests + ' remaining.');
-		var progress = (100 - (Math.round(numtests / (settings['TestsOnStart'] / 100))));
-		$( "#progressbar" ).progressbar('value', progress);
-		
-		/* add one to the test counter variable */
-		counttests++;
+		$("#status").html('Doing ' + settings['TestsOnStart'] + ' tests, ' + remainingTests + ' remaining.');
+		var progress = (100 - (Math.round(remainingTests / (settings['TestsOnStart'] / 100))));
+		updateProgressbar(progress);
+
 		
 		
 		/* --- AJAX Request --- */
@@ -50,15 +48,15 @@ $(document).ready(function(){
 			timeout:15000,
 			success: function(data, textStatus, jqXHR){
 			  
+			  	counttests++;
+				remainingTests--;
 				
 				/* Parse result to html table markup */
 					
-					$("#results-content").append("<tr></tr>");
-					
 					var html = '<tr><th>' + counttests + '</th>';
 					
+					// Calculate sum of all results
 					var total = 0;
-					
 					$.each(data, function(index, value){
 						html = html + '<td>' + value + '</td>';
 						total = total + value;
@@ -71,18 +69,12 @@ $(document).ready(function(){
 					
 					html = html + '</tr>';
 				
-				/* END: Parse result to html table markup */
-				
 				
 				/* add the parsed html to the table */
 				$(html)
 				    .hide()
 				    .appendTo('#results-content')
-				    .css({
-				    	'opacity':'0',
-				    	'display':'table-row'
-				    	})
-				    .animate({'opacity':'1'}, 'slow');		
+				    .fadeIn('slow');
 				
 				/* Fill in the resultsByTestType array */
 				$.each(data, function(index, value){
@@ -98,15 +90,13 @@ $(document).ready(function(){
 				/* Fill in the resultsByRequest array */
 				resultsByRequest[counttests] = data;
 				
-				numtests--;
-				
 				computeAverages();
 				 
 				/* if there are still tests to do start the function again */
-				if (stop == false && numtests > 0) {
-					doTests(numtests);
+				if (stop == false && remainingTests > 0) {
+					doTests(remainingTests);
 				} else {
-					$( "#progressbar" ).progressbar('value', 100);
+					updateProgressbar(100);
 					$('#status').html('Finished!');
 				}
 			  
@@ -159,7 +149,6 @@ $(document).ready(function(){
 	--------------------------------------------- */
 	$("#button-start").click(function(event){
 		event.preventDefault();
-		$('#progressbar').show('slow');
 		doTests(settings['TestsOnStart']);
 	});
 	
@@ -242,6 +231,11 @@ $(document).ready(function(){
 	--------------------------------------------- */
 	$( "#progressbar" ).progressbar({
 			value: 0
-		});
+	});
+	
+	function updateProgressbar(value) {		
+		value += '%';
+		$("#progressbar .ui-progressbar-value").animate({'width': value}, 'slow');
+	}
 });
 

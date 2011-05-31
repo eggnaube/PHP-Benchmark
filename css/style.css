@@ -220,7 +220,12 @@ header h2 {
 	
 }
 
-.ui-progressbar-value { background-image: url(pbar-ani.gif); }
+#progressbar {
+	width:60%;
+	margin-left:auto;
+	margin-right:auto;
+	overflow:hidden;
+}
 
 /* Results table
 --------------------------------------------- */
