@@ -18,7 +18,7 @@
 		<link type="text/css" rel="stylesheet" href="css/syntaxhighlighter/shCore.css"/>
 		<link type="text/css" rel="stylesheet" href="css/syntaxhighlighter/shCoreDefault.css"/>
 		<link rel="stylesheet" href="css/css3buttons.css" media="screen">
-		<link type="text/css" href="css/south-street/jquery-ui-1.8.11.custom.css" rel="stylesheet" />
+		<link type="text/css" href="css/south-street/jquery-ui-1.8.13.custom.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/style.css?v=2">
 
 		<script src="js/libs/modernizr-1.7.min.js"></script>
@@ -246,12 +246,12 @@ for($i=0; $i < 20000; $i++) {
 		<script src="js/libs/jquery-1.6.1.min.js"></script>
 		
 		<!-- SyntaxHighlighter -->
-		<script type="text/javascript" src="js/mylibs/syntaxhighlighter/shCore.js"></script>
-		<script type="text/javascript" src="js/mylibs/syntaxhighlighter/shBrushPhp.js"></script>
+		<script type="text/javascript" src="js/libs/syntaxhighlighter/shCore.js"></script>
+		<script type="text/javascript" src="js/libs/syntaxhighlighter/shBrushPhp.js"></script>
 		<script type="text/javascript">SyntaxHighlighter.all();</script>
 		<!-- SyntaxHighlighter END -->
 		
-		<script type="text/javascript" src="js/mylibs/jquery-ui-1.8.11.custom.min.js"></script>
+		<script type="text/javascript" src="js/libs/jquery-ui-1.8.13.custom.min.js"></script>
 		<script src="js/plugins.js"></script>
 		<script src="js/script.js"></script>
 
