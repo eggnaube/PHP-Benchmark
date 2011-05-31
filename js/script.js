@@ -230,12 +230,14 @@ $(document).ready(function(){
 	/* Progressbar
 	--------------------------------------------- */
 	$( "#progressbar" ).progressbar({
-			value: 0
+			value: 0.00001
 	});
 	
 	function updateProgressbar(value) {		
 		value += '%';
-		$("#progressbar .ui-progressbar-value").animate({'width': value}, 'slow');
+		$("#progressbar div.ui-progressbar-value").animate({'width': value}, 'slow');
 	}
+	
+	updateProgressbar(0);
 });
 
