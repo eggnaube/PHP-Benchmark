@@ -14,7 +14,7 @@
 	$results = $benchmark->doTests(true);
 
 	foreach ($results as $key => $value) {
-		$json[($key - 1)] = round($value);
+		$json[($key - 1)] = $value;
 	}
 
 	$json = json_encode($json);

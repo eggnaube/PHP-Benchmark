@@ -58,14 +58,14 @@ $(document).ready(function(){
 					// Calculate sum of all results
 					var total = 0;
 					$.each(data, function(index, value){
-						html = html + '<td>' + value + '</td>';
+						html = html + '<td>' + Math.round(value) + '</td>';
 						total = total + value;
 					});
 					
 					// save total in totals array & begin at 0
 					totals[(counttests - 1)] = total;
 	
-					html = html + '<td class="total">' + total + '</td>';
+					html = html + '<td class="total">' + Math.round(total) + '</td>';
 					
 					html = html + '</tr>';
 				
