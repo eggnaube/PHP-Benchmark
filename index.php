@@ -252,7 +252,6 @@ for($i=0; $i < 20000; $i++) {
 		<!-- SyntaxHighlighter END -->
 		
 		<script type="text/javascript" src="js/libs/jquery-ui-1.8.13.custom.min.js"></script>
-		<script src="js/plugins.js"></script>
 		<script src="js/script.js"></script>
 
 		<!--[if lt IE 7 ]>
