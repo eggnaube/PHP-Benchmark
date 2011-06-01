@@ -90,7 +90,10 @@ $(document).ready(function(){
 				/* Fill in the resultsByRequest array */
 				resultsByRequest[counttests] = data;
 				
-				computeAverages();
+				// only show averages if there are more than 1 tests
+				if(counttests > 1) {
+					computeAverages();
+				}
 				 
 				/* if there are still tests to do start the function again */
 				if (stop == false && remainingTests > 0) {
