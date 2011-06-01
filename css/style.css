@@ -384,6 +384,12 @@ header h2 {
 	text-align: left;
 }
 
+/* Settings
+--------------------------------------------- */
+span.ui-button-text {
+	text-shadow:none;
+}
+
 /* Footer
 --------------------------------------------- */
 
