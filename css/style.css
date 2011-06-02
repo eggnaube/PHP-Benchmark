@@ -403,6 +403,11 @@ span.ui-button-text {
 	text-shadow:none;
 }
 
+#settings section {
+	margin-top: 1.5em;
+	margin-bottom: 0;
+}
+
 /* Footer
 --------------------------------------------- */
 

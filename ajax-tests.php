@@ -2,8 +2,6 @@
     /*
 	 * ajax-tests.php
 	 * 
-	 * This file runs the tests and returns the results in a table snippet.
-	 * 
 	 * @package PHP Benchmark Script
 	 * 
 	 */
@@ -12,6 +10,26 @@
 	
 	$benchmark = new PHP_Benchmark;
 	$results = $benchmark->doTests(true);
+
+
+	/*
+	 * Save results in CSV
+	 */
+	if($_GET['saveAs'] == 'csv')
+	{
+		$csv = fopen('results.csv', 'a');
+		
+		// add timestamp if activated
+		if($_GET['csv-timestamp'] == true) {
+			fwrite($csv, time());
+			fwrite($csv, $_GET['csv-seperator']);
+		}
+		
+		fwrite($csv, implode($_GET['csv-seperator'],$results));
+		fwrite($csv, "\r\n");
+		fclose($csv);
+	}
+
 
 	foreach ($results as $key => $value) {
 		$json[($key - 1)] = $value;

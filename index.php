@@ -236,9 +236,26 @@ for($i=0; $i < 20000; $i++) {
 		
 		<div id="settings" title="Settings">
 			<form action="javascript:void();">
+				
 				<ul>
-					<li>Do <input id="settings-TestsOnStart" name="TestsOnStart" type="text" size="2" maxlength="4" value="5"> tests after clicking on the start button.</li>
+					<li>Do <input id="settings-TestsOnStart" name="TestsOnStart" type="text" size="2" maxlength="4" value="5" /> tests after clicking on the start button.</li>
+					<li>Save results in file: 
+						<select id="settings-saveas">
+							<option value="none">None</option>
+							<option value="csv">CSV</option>
+						</select>
+					</li>
 				</ul>
+				
+				<section id="settings-csv">
+					<h3>CSV settings</h3>
+					<ul>
+						<li>Value seperator: <input id="settings-csv-seperator" name="settings-csv-seperator" type="text" size="1" value="," /></li>
+						<li>Save timestamp <input type="checkbox" name="settings-csv-timestamp" id="settings-csv-timestamp" value="timestamp" /></li>
+					</ul>
+					<p>You will be able to access the CSV file here: <a href="./results.csv" title="Results as CSV">Link to CSV</a></p>
+				</section>
+							
 			</form>
 		</div>
 		

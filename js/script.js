@@ -23,6 +23,10 @@ $(document).ready(function(){
 	/* --- Default settings --- */
 	var settings = new Array();
 	settings['TestsOnStart'] = 5;
+	settings['saveAs'] = 'none';
+	settings['csv'] = new Array();
+	settings['csv']['seperator'] = ",";
+	settings['csv']['timestamp'] = true;
 	
 	
 	/* doTests(): Main function to do the tests
@@ -46,6 +50,12 @@ $(document).ready(function(){
 			dataType: 'json',
 			cache:false,
 			timeout:15000,
+			type:'GET',
+			data:{
+				'saveAs':settings['saveAs'],
+				'csv-seperator':settings['csv']['seperator'],
+				'csv-timestamp':settings['csv']['timestamp'],
+			},
 			success: function(data, textStatus, jqXHR){
 			  
 			  	counttests++;
@@ -78,7 +88,6 @@ $(document).ready(function(){
 				
 				/* Fill in the resultsByTestType array */
 				$.each(data, function(index, value){
-					
 					if (typeof(resultsByTestType[index]) == "undefined") {
 						resultsByTestType[index] = new Array();
 					}
@@ -106,7 +115,7 @@ $(document).ready(function(){
 		    }, /* SUCCESS callback END */
 		    
 		    error: function(jqXHR, textStatus, errorThrown){
-//		    	alert('Request error: ' + textStatus);
+				//TODO
 		    }
 		    
 		});
@@ -204,11 +213,20 @@ $(document).ready(function(){
 	/* Settings
 	--------------------------------------------- */
 	$('#settings').dialog({
-		autoOpen: false,
+		autoOpen:false,
 		modal:true,
 		minWidth: 400,
 		open:function(event,ui){
 			 $('#settings-TestsOnStart').val(settings['TestsOnStart']);
+			 $('#settings-saveas').val(settings['saveAs']);
+			 $('#settings-csv-seperator').val(settings['csv']['seperator']);
+			 $('#settings-csv-timestamp').prop('checked', settings['csv']['timestamp']);
+			 
+			 if($('#settings-saveas').val() == 'csv'){
+				 $('#settings-csv').show();
+			 } else {
+			 	 $('#settings-csv').hide();
+			 }
 		},
 		show: 'blind',
 		buttons: {
@@ -217,10 +235,21 @@ $(document).ready(function(){
 			},
 			'Save':function(){
 				settings['TestsOnStart'] = $('#settings-TestsOnStart').val();
-				$( this ).dialog( "close" );
+				settings['saveAs'] = $('#settings-saveas').val();
+				settings['csv']['seperator'] = $('#settings-csv-seperator').val();
+				settings['csv']['timestamp'] = $('#settings-csv-timestamp').prop('checked');
+				$(this).dialog( "close" );
 			}
 		},
 		hide: 'blind'
+	});
+	
+	$('#settings-saveas').change(function(){
+		if($(this).val() == 'csv'){
+			$('#settings-csv').show('slow');	
+		} else {
+			$('#settings-csv').hide('slow');
+		}
 	});
 	
 	$('#button-settings').click(function(event){
