@@ -212,6 +212,9 @@ $(document).ready(function(){
 		},
 		show: 'blind',
 		buttons: {
+			'Cancel':function(){
+				$(this).dialog( "close" );
+			},
 			'Save':function(){
 				settings['TestsOnStart'] = $('#settings-TestsOnStart').val();
 				$( this ).dialog( "close" );
