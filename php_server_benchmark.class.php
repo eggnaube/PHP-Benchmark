@@ -13,7 +13,7 @@
 	 * @license Creative Commons Attribution-ShareAlike 3.0 Unported License ( http://creativecommons.org/licenses/by-sa/3.0/ )
 	 * 
 	 */ 
-	 class PHP_Benchmark {
+	 class PHP_Server_Benchmark {
 	 	
 				
 		/*
@@ -22,13 +22,13 @@
 		public function doTests($ms = false) {
 			$results = array();
 			
-			$results[1] = $this->test1();
-			$results[2] = $this->test2();
-			$results[3] = $this->test3();
-			$results[4] = $this->test4();
-			$results[5] = $this->test5();
-			$results[6] = $this->test6();
-			$results[7] = $this->test7();
+			$results[1] = self::test1();
+			$results[2] = self::test2();
+			$results[3] = self::test3();
+			$results[4] = self::test4();
+			$results[5] = self::test5();
+			$results[6] = self::test6();
+			$results[7] = self::test7();
 			
 			// if output should be in miliseconds instead of seconds multiply all values with 1000
 			if ($ms == true) {
@@ -40,20 +40,20 @@
 			return $results;
 		}
 		
+		
 		/* 
 		 * -----------------
 		 *  BEGIN OF TESTS
 		 * -----------------
 		 */
-		
-		
+			
 		
 		/*
 		 * TEST 1 - STRINGS AND CALCULATING
 		 * 
 		 * This test uses several string functions an a string and calculates a little bit.
 		 */
-		public function test1() {
+		public static function test1() {
 			/* start the clock */	
 			$starttime = microtime(true);
 			
@@ -81,7 +81,7 @@
 		 * 
 		 * This test uses several encryptions and hashes on a string.
 		 */
-		 public function test2() {
+		 public static function test2() {
 		 	/* start the clock */	
 			$starttime = microtime(true);	
 			
@@ -107,7 +107,7 @@
 		 * 
 		 * This tests handles with date functions and date calculations.
 		 */
-		public function test3() {
+		public static function test3() {
 			/* start the clock */	
 			$starttime = microtime(true);	
 				
@@ -131,7 +131,7 @@
 		 * 
 		 * This tests manipulates images to measure the speed of GD.
 		 */
-		public function test4() {
+		public static function test4() {
 			/* start the clock */	
 			$starttime = microtime(true);
 			
@@ -157,7 +157,7 @@
 		 * 
 		 * This test gets system variables in $_SERVER and uses shuffle() and arsort() on them 1000 times.
 		 */
-		public function test5() {
+		public static function test5() {
 			/* start the clock */	
 			$starttime = microtime(true);
 			
@@ -182,7 +182,7 @@
 		 * 
 		 * ???
 		 */
-		 public function test6() {
+		 public static function test6() {
 		 	/* start the clock */	
 			$starttime = microtime(true);
 				
@@ -231,13 +231,13 @@
 		 * 
 		 * This test creates an instance of the PHP_Benchmark_Foo class and starts these functions 1000 times in a loop.
 		 */
-		 public function test7() {
+		 public static function test7() {
 		 	/* start the clock */	
 			$starttime = microtime(true);
 			
 			
 			for($i=0; $i < 20000; $i++) {
-	       		$bar = new PHP_Benchmark_Foo("Hello world!");
+	       		$bar = new PHP_Server_Benchmark_Foo("Hello world!");
 	       		$_1 = $bar->do_foo();
 	       		$_2 = $bar->multiply(72, 12);
 			}
@@ -258,20 +258,6 @@
 		 */
 		
 		
-		/*
-		 * Compare Functions
-		 * 
-		 * With this function you can compare two or more functions with each other.
-		 * 
-		 * @param $functions = array(
-		 * 1 => array("shortname" => "functionname"))
-		 * 
-		 */ 
-		public function compareFunctions($functions = array(), $duration = 2) {
-			
-		}
-		
-		
 	 } // End of class
 
 	/*
@@ -282,19 +268,19 @@
 	 * @package PHP Benchmark Script
 	 * 
 	 */ 
-	class PHP_Benchmark_Foo {
+	class PHP_Server_Benchmark_Foo {
 			
-		var $z;
+		static $z;
 		
-		function Foo($var) {
-			$this->z = $var;
+		static function Foo($var) {
+			self::$z = $var;
 		}
 		
-		function do_foo() {
-			return $this->z;
+		static function do_foo() {
+			return self::$z;
 		}
 		
-		function multiply($var1, $var2) {
+		static function multiply($var1, $var2) {
 			return ($var1 * $var2);
 		}
 }

@@ -6,9 +6,9 @@
 	 * 
 	 */
     
-    require_once 'php_benchmark.class.php';
+    require_once 'php_server_benchmark.class.php';
 	
-	$benchmark = new PHP_Benchmark;
+	$benchmark = new PHP_Server_Benchmark;
 	$results = $benchmark->doTests(true);
 
 
