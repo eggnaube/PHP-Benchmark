@@ -1,6 +1,6 @@
 <?php
     /*
-	 * PHP Benchmark Class
+	 * PHP Server Benchmark Class
 	 * 
 	 * This class provides the core benchmarking functions for the PHP Benchmark Script.
 	 * Run the doTests() method and this will execute some tests  to check your PHP server performance.
