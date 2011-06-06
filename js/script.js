@@ -270,7 +270,7 @@ $(document).ready(function(){
 	
 	function updateProgressbar(value) {		
 		value += '%';
-		$("#progressbar div.ui-progressbar-value").animate({'width': value}, 'slow');
+		$("#progressbar div.ui-progressbar-value").stop(true).animate({'width': value}, 'slow');
 	}
 	
 	updateProgressbar(0);
