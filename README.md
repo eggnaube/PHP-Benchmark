@@ -5,12 +5,14 @@ PHP Server Benchmark
 
 PHP Server Benchmark is a simple to use benchmark for PHP webservers.
 This means that you can use it to measure the speed of your webserver.
+
 It tests many parts of PHP, like string functions, array functions, filesystem functions and more.
 
 ## Installation
 
 To install it, simply copy all files of this repository to your webspace and go to the `index.php`.
-It needs *at least PHP 5* and *write permssions* in the installation folder and in the `libs/` subfolder.
+
+It needs **at least PHP 5** and **write permssions** in the installation folder and in the `libs/` subfolder.
 
 ## Usage
 
@@ -20,7 +22,9 @@ You can change the execution number in the settings menu.
 ## Export
 
 You can save your results by enabling export it in the settings menu.
+
 Note that you must enable it *before* you start the tests you want to save.
+
 At the moment you can only export to CSV (Comma-Separated Values).
 
 ## License
