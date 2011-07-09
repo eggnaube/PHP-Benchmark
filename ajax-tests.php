@@ -8,8 +8,7 @@
     
     require_once 'libs/php_server_benchmark.class.php';
 	
-	$benchmark = new PHP_Server_Benchmark;
-	$results = $benchmark->doTests(true);
+	$results = PHP_Server_Benchmark::doTests(true);
 
 
 	/*

@@ -19,7 +19,7 @@
 		/*
 		 * Main function to run the tests
 		 */
-		public function doTests($ms = false) {
+		public static function doTests($ms = false) {
 			$results = array();
 			
 			$results[1] = self::test1();
