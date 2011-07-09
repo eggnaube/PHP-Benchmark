@@ -1,63 +1,27 @@
-PHP Benchmark Script
-====================
-The PHP Benchmark Script consists of the following three parts:
+PHP Server Benchmark
+=====================
 
-* User Interface (for normal users): This is an easy UI for the `PHP_Benchmark` class.
-* `PHP_Benchmark` class (for PHP developers): This is the class the UI is based on and with it you can benchmark your PHP webserver with the 7 tests you saw in the UI.
-* `Function_Benchmark` class (for more advanced PHP developers): This is a class to compare one or more functions in the matter of performance.
+## What is this?
 
-## User Interface (UI)
-This is the visible part of the PHP Benchmark Script. With it you can easily use the PHP Benchmark class knowing whatsoever about programming PHP.
+PHP Server Benchmark is a simple to use benchmark for PHP webservers.
+This means that you can use it to measure the speed of your webserver.
+It tests many parts of PHP, like string functions, array functions, filesystem functions and more.
 
-### Usage
-To use the UI, simply copy all files to your server and access the index of your PHP Benchmark Script directory.
-Simply click on 'Start' and all tests will be automatically executed 5 times. 
+## Installation
 
-Click on 'Clear table' to remove the results from the table.
+To install it, simply copy all files of this repository to your webspace and go to the `index.php`.
+It needs *at least PHP 5* and *write permssions* in the installation folder and in the `libs/` subfolder.
 
-### Coming features
+## Usage
 
-* Export of the results
+To start the tests, simply click on 'Start' and all tests will be executed by default 5 times.
+You can change the execution number in the settings menu.
 
-### More
+## Export
 
-* [Known issues](https://github.com/Philipp15b/PHP-Benchmark/issues/labels/UI "Known issues")
-
-## PHP Benchmark class
-This is the core of the PHP Benchmark Script. It contains the tests and some functions to do them. 
-
-To use this class, create an instance of the `PHP_Benchmark` class and you can use the following methods:
-
-* `doTests()`: do all 7 tests and return their results in an array.
-* `test1()`: String operations test
-* `test2()`: Encryption and hashes test
-* `test3()`: Date functions and calculations test
-* `test4()`: Image manipulation via GD test
-* `test5()`: Array functions test
-* `test6()`: Filesystem operations test
-* `test7()`: Object handling test
-
-All the tests (except `doTests()`) will return a float that is the time the test needed.
-
-### Coming features
-
-* More options in the functions
-
-### More
-
-* [Known issues](https://github.com/Philipp15b/PHP-Benchmark/issues/labels/PHP_Benchmark%20class "Known issues")
-
-## Function Benchmark class
-This class allows you to compare one or more functions in the matter of performance.
-Because there is no documentation yet, you are still forced to look at the source code.
-
-### Coming features
-
-nothing planned.
-
-### More
-
-* [Known issues](https://github.com/Philipp15b/PHP-Benchmark/issues/labels/Function_Benchmark%20class "Known issues")
+You can save your results by enabling export it in the settings menu.
+Note that you must enable it *before* you start the tests you want to save.
+At the moment you can only export to CSV (Comma-Separated Values).
 
 ## License
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a>
