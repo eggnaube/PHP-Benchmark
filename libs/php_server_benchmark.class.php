@@ -237,7 +237,7 @@
 			
 			
 			for($i=0; $i < 20000; $i++) {
-	       		$bar = new PHP_Server_Benchmark_Foo("Hello world!");
+	       		$bar = new PHP_Server_Benchmark_Foo;
 	       		$_1 = $bar->do_foo();
 	       		$_2 = $bar->multiply(72, 12);
 			}
