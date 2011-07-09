@@ -209,6 +209,25 @@ for($i=0; $i < 200; $i++) {
 							<h3>Objects</h3>
 							<p>This test creates an instance of the PHP_Benchmark_Foo class and starts these functions 1000 times in a loop.</p>
 <pre class="brush: php">			
+class PHP_Server_Benchmark_Foo {
+
+		static $z;
+
+		static function Foo($var) {
+			self::$z = $var;
+		}
+
+		static function do_foo() {
+			return self::$z;
+		}
+
+		static function multiply($var1, $var2) {
+			return ($var1 * $var2);
+		}
+}			
+</pre>		
+							
+<pre class="brush: php">			
 for($i=0; $i < 20000; $i++) {
 	$bar = new PHP_Benchmark_Foo("Hello world!");
 	$_1 = $bar->do_foo();
